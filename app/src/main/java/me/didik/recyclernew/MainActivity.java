@@ -21,9 +21,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        mActionBar.setTitle("Recycler Sample");
+        mActionBar.setTitle("RecyclerView Demo");
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 

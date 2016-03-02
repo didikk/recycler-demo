@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 public abstract class BaseActivity extends AppCompatActivity {
     protected ActionBar mActionBar;
     protected Context mContext;
+    private boolean isToolbarEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,23 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         super.setContentView(fullView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        mActionBar = getSupportActionBar();
+        if (isToolbarEnabled){
+            setSupportActionBar(toolbar);
+            mActionBar = getSupportActionBar();
+        }else toolbar.setVisibility(View.GONE);
+    }
+
+    /**
+     * Custom setContentView
+     * Call this method if you want to disable the toolbar
+     * Toolbar is enable by default
+     *
+     * @param layoutResID Your layout Id
+     * @param useToolbar set false to disable toolbar
+     */
+    public void setContentView(int layoutResID, boolean useToolbar){
+        isToolbarEnabled = useToolbar;
+        setContentView(layoutResID);
     }
 }
